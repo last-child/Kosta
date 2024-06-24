@@ -1,4 +1,4 @@
-## 01. css( ) 함수
+## jQuery 사용
 
 <br>   
 
@@ -7,35 +7,33 @@
 
 // 페이지의 모든 콘텐츠가 로드되고 난 후 실행함
 document.addEventListener("DOMContentLoaded", () => {
-
-    // h2 요소의 스타일 속성을 지정함.
-    document.querySelectorAll('h2').forEach((item) => {
-        item.style.fontSize = '40px';
-    })
-
-    // h3 요소의 스타일 속성들을 한 번에 지정함.
-    document.querySelectorAll('h3').forEach((item) => {
-        item.style.color = 'red';
-        item.style.backgroundColor = "yellow";
-    })
-
+    document.querySelectorAll('h1').style.color = 'red';
 })
 ```
+
+<br>   
 
 ```javascript
-// JQuery
+// jQuery (1)
 
 $(document).ready(() => {
-    $('h2').css('font-size', '40px');
-   
-    $('h3').css({
-        'color': 'red',
-        'background-color': 'yellow'
-    });
+    $('h1').css('color', 'blue');
 })
 ```
 
-#### jQuery의 css( ) 함수는 특정 요소의 스타일 속성을 가져오거나 설정할 수 있다.
+<br>   
+
+```javascript
+// jQuery (2)
+
+$(() => {
+    $('h1').css('color', 'blue');
+})
+```
+
+<br>   
+
+#### 문서에 jQuery 라이브러리를 불러오지 않고 $( ) 함수를 사용하려고 하면 ReferenceError가 발생한다.
 
 <br>   
 <br>   
@@ -43,40 +41,46 @@ $(document).ready(() => {
 <br>   
 <br>
 
-## 02. val( ) 함수
+## jQuery 조작 (1)
 
 <br>   
 
 ```javascript
-// Vanilla
+// HTML 요소 가져오기
+console.log($('#content').html());
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    // 타입이 text인 input의 value를 지정함
-    document.querySelector("input[type=text]").value = "안녕하세요";
-
-    // 체크된 체크박스의 값을 가져옴
-    const checkedBox = document.querySelector('input[type="checkbox"]:checked');
-    const checked_val = checkedBox? checkedBox.value : null;
-    console.log(checked_val);
-
-})
+// HTML 요소 설정하기
+$('#content').html('<p>Hello, World</p>');
 ```
 
 <br>   
 
 ```javascript
-// JQuery
+// 텍스트 가져오기
+console.log($('#content').text());
 
-$(document).ready(() => {
-    $("input:text").val("안녕하세요");
-
-    const checked_val = $('input:checkbox:checked').val();
-    console.log(checked_val);
-})
+// 텍스트 설정하기
+$('#content').text('Hello, World');
 ```
 
-#### jQuery의 val( ) 함수는 특정 폼의 값을 가져오거나 설정할 수 있다.
+<br>   
+
+```javascript
+// 입력 필드의 값 가져오기
+const selected_val = $('select>option:selected').val();
+console.log('selected_val :', selected_val);
+
+const checked_val = $('input:checkbox:checked').val();
+console.log(checked_val);
+
+// 입력 필드의 값 설정하기
+$('input:text').val('문자를 입력하세요.');
+```
+<br>   
+
+#### html( ) : HTML 태그가 포함된 내용을 가져오거나 설정함.
+#### text( ) : HTML 태그가 제외한 텍스트를 가져오거나 설정함.
+#### val( ) : 폼 요소의 값(value)을 가져오거나 설정함. 
 
 <br>   
 <Br>   
@@ -84,4 +88,20 @@ $(document).ready(() => {
 <Br>   
 <br>   
 
-## 
+## 요소를 필터링하는 함수
+
+<br>   
+
+```javascript
+$('h3').filter((index, item) => {
+    console.log(index, item)
+    return index%3 == 0
+}).css('color', 'blue')
+```
+
+<br>   
+
+```javascript
+$('table tr').filter(":even").css('color', 'blue');
+$('h2').filter(":odd").css("color", "white");
+```
