@@ -58,8 +58,8 @@ import Book from "./Book";
 
 function Library() {
   const books = [
-    {title: "나루토", author: "키시모토 마사시", series: 106},
-    {title: "원피스", author: "오다 에이치로", series: 50},
+    {title: "나루토", author: "키시모토 마사시", series: 50},
+    {title: "원피스", author: "오다 에이치로", series: 109},
     {title: "블리치", author: "쿠보 타이토", series: 38},
   ];
 
@@ -77,5 +77,5 @@ export default Library;
 
 <br>   
 
-+ 상위 컴포넌트(Library)는 map 메서드를 통해 하위 컴포넌트(Book)을 동적으로 생성한다.
-+ 각 컴포넌트(Book)에는 고유한 key를 비롯한 여러 데이터들을 속성(props)으로 전달한다.
++ 상위 컴포넌트(Library)는 map 메서드를 통해 하위 컴포넌트(Book)를 동적으로 생성한다.
++ 하위 컴포넌트(Book)에 key를 비롯한 여러 데이터들이 속성(props)으로 전달된다.
